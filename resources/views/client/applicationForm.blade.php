@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+
     <style>
         .form-control {
             background-color: #ebecee;
@@ -69,10 +70,25 @@
         .btn:hover {
             background-image: linear-gradient(to right, #61045f, #aa076b);
         }
+
+        .is-invalid2 {
+            border-color: #dc3545;
+        }
     </style>
 </head>
 
 <body style="background-image: linear-gradient(#8a0000, #0c2cba); height: auto;">
+    <div>
+        @if ($errors->any())
+            <div>
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            </div>
+        @endif
+    </div>
     {{-- Data Privacy Modal --}}
     <div class="modal" id="myModal" tabindex="-1">
         <div class="modal-dialog" style="max-width: 900px;">
@@ -114,39 +130,27 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-                backdrop: 'static',
-                keyboard: false
-            });
-            myModal.show();
-
-            document.getElementById('agreeButton').addEventListener('click', function() {
-                // Add your logic for what happens when the user agrees
-                // For example, you might close the modal or redirect to another page
-                myModal.hide();
-            });
-        });
-    </script>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col text-center">
                 <img src="https://depedcalabarzon.ph/wp-content/uploads/2023/09/website-banner-4.png"
                     style="width: 60%; height: 100px">
-                <h4 class="text-white mb-1" style="margin-top: 10px;"><strong>HELP US SERVE YOU BETTER!</strong></h4>
+                <h4 class="text-white mb-1" style="margin-top: 10px;"><strong>HELP US SERVE YOU BETTER!</strong>
+                </h4>
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="row">
-            <form class="card-body rounded-3 text-dark p-4 mt-3 mb-5 overflow-auto"
+            <form method="POST" action="{{ route('client.store') }}"
+                class="card-body rounded-3 text-dark p-4 mt-3 mb-5 overflow-auto"
                 style="border-radius: 10px;
             overflow: hidden;
             background: rgba(247, 247, 247, 0.26);
-            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.6);"
-                action="">
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.6);">
+                @csrf
+                @method('post')
                 <div class="row">
                     <div class="container-fluid">
                         <div class="row">
@@ -161,20 +165,26 @@
                         <label class="label" for="emailAddress"> <strong>Active Email Address</strong></label>
                         <input type="email" id="emailAddress" class="form-control" name="emailAddress" value=""
                             maxlength="254" placeholder="example@gmail.com" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required="">
+                            onblur="restorePlaceholder(this)">
+                        @error('emailAddress')
+                            <div class="invalid-feedback2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="homeAddress"><strong>Home Address</strong> </label>
                         <input type="text" name="homeAddress" id="homeAddress" value="" maxlength="100"
                             class="form-control" placeholder="Brgy. Sto Domingo Cainta Rizal"
-                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required="">
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+                        @error('homeAddress')
+                            <div class="invalid-feedback2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="clientType"> <strong>Client Type</strong> </label>
                         <select class="form-control" id="clientType" name="clientType">
-                            <option value="male">Citizen</option> 
+                            <option value="male">Citizen</option>
                             <option value="female">Business</option>
                             <option value="female">Government(Employee or another agency)</option>
                         </select>
@@ -184,98 +194,111 @@
                         <label class="label" for="firstName"><strong>First Names</strong> </label>
                         <input type="text" name="firstName" id="firstName" value="" maxlength="50"
                             class="form-control" placeholder="Juan" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required="">
+                            onblur="restorePlaceholder(this)">
+                        @error('firstName')
+                            <div class="invalid-feedback2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="lastName"> <strong>Middle Names</strong> </label>
-                        <input type="text" name="lastName" id="lastName" value="" maxlength="50"
+                        <label class="label" for="middleName"> <strong>Middle Names</strong> </label>
+                        <input type="text" name="middleName" id="middleName" value="" maxlength="50"
                             class="form-control" placeholder="Dela Cruz" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required="">
+                            onblur="restorePlaceholder(this)">
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="lastName"> <strong>Last Names</strong> </label>
                         <input type="text" name="lastName" id="lastName" value="" maxlength="50"
                             class="form-control" placeholder="Santos" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required="">
+                            onblur="restorePlaceholder(this)">
+                        @error('lastName')
+                            <div class="invalid-feedback2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="age"> <strong>Age</strong> </label>
-                        <input type="number" name="age" id="age" value="" maxlength="50"
-                            class="form-control" placeholder="18" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required="">
-                    </div>
-
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="sex"> <strong>Gender</strong> </label>
-                        <select class="form-control" id="sex" name="sex">
-                            <option value="male">Male</option> 
+                        <label class="label" for="gender"> <strong>Gender</strong> </label>
+                        <select class="form-control" id="gender" name="gender">
+                            <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="date"> <strong>Birth Date</strong> </label>
-                        <input type="date" name="date" id="date" value="" maxlength="50"
-                            class="form-control" required="">
+                        <label class="label" for="birthDate"> <strong>Birth Date</strong> </label>
+                        <input type="date" name="birthDate" id="birthDate" value="" maxlength="50"
+                            class="form-control">
+                        @error('birthDate')
+                            <div class="invalid-feedback2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="contact number"> <strong>Mobile Number</strong> </label>
-                        <input type="tel" id="contact number" class="form-control" name="contactNumber"
-                            value="" pattern="[0]{1}[9]{1}[0-9]{9}" placeholder="Ex. 09638445701"
-                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required="">
+                        <label class="label" for="contact"> <strong>Mobile Number</strong> </label>
+                        <input type="tel" id="contact" class="form-control" name="contact" value=""
+                            pattern="[0]{1}[9]{1}[0-9]{9}" placeholder="Ex. 09638445701"
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+                        @error('contact')
+                            <div class="invalid-feedback2">{{ $message }}</div>
+                        @enderror
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="divisionOfResidence"> <strong>Division of Residence</strong> </label>
-                        <input type="text" name="divisionOfResidence" id="divisionOfResidence" value="" maxlength="50"
-                            class="form-control" placeholder="Division of Residence" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required="">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
+                        <label class="label" for="divisionOfResidence"> <strong>Division of Residence</strong>
+                        </label>
+                        <input type="text" name="divisionOfResidence" id="divisionOfResidence" value=""
+                            maxlength="50" class="form-control" placeholder="Division of Residence"
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+                        @error('divisionOfResidence')
+                            <div class="invalid-feedback2">{{ $message }}</div>
+                        @enderror
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="timeOut"> <strong>Time Out</strong> </label>
-                        <input type="time" name="timeOut" id="timeOut" value="" maxlength="50"
-                            class="form-control" placeholder="HH:MM AM/PM">
-                    </div>
-
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="officeConcerned"> <strong>Office Concerned</strong> </label>
                         <select class="form-control" id="officeConcerned" name="officeConcerned">
-                            <option value="male">ICT Unit</option> 
+                            <option value="male">ICT Unit</option>
                             <option value="female">Multimedia</option>
                             <option value="female">Legal Unit</option>
                         </select>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="purposeId"> <strong>Purpose</strong> </label>
                         <input type="id" name="purposeId" id="purposeId" value="" maxlength="50"
-                            class="form-control" placeholder="Purpose" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required="">
+                            class="form-control" placeholder="Purpose" onfocus="clearPlaceholder(this)"
+                            onblur="restorePlaceholder(this)">
+                        @error('purposeId')
+                            <div class="invalid-feedback2">{{ $message }}</div>
+                        @enderror
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="virtualIdNumber"> <strong>Virtual ID Number</strong> </label>
-                        <input type="id" name="virtualIdNumber" id="virtualIdNumber" value="" maxlength="50"
-                            class="form-control" placeholder="ID Number" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required="">
+                        <input type="id" name="virtualIdNumber" id="virtualIdNumber" value=""
+                            maxlength="50" class="form-control" placeholder="ID Number"
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+                        @error('virtualIdNumber')
+                            <div class="invalid-feedback2">{{ $message }}</div>
+                        @enderror
                     </div>
-
                     <div class="container-responsive">
                         <div class="row align-items-center">
-                            <div class="col-12 mt-3 mt-sm-4">
-                                <form method="get" action="{{route('client.asd')}}">
-                                    <button type="submit" class="btn btn-active bg-dark text-white"
+                            <div class="col-8 mt-3 mt-sm-4">
+                                <button type="submit" class="btn btn-active bg-dark text-white"
                                     style="font-weight: bold;">Submit</button>
-                                </form>
-                                
                             </div>
-                        </div>
-                    </div>
-                </div>
             </form>
+            <div class="col-4 mt-3 mt-sm-4">
+                <button class="btn btn-primary"><a href="{{ route('client.clientLogs') }}"
+                        style="text-decoration: none; color: white; font-weight: bold;">Go to Logs</a></button>
+            </div>
         </div>
+    </div>
+    </div>
+
+    </div>
     </div>
     <script>
         function clearPlaceholder(input) {
@@ -288,6 +311,20 @@
                 input.placeholder = input.getAttribute('data-original-placeholder'); // Restore the placeholder text
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            myModal.show();
+
+            document.getElementById('agreeButton').addEventListener('click', function() {
+                // Add your logic for what happens when the user agrees
+                // For example, you might close the modal or redirect to another page
+                myModal.hide();
+            });
+        });
     </script>
 </body>
 

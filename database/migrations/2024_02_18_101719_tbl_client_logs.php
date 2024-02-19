@@ -14,21 +14,22 @@ return new class extends Migration
         Schema::create('tbl_clientLogs', function (Blueprint $table) {
             $table->id();
             $table->string('emailAddress');
-            $table->string('birthDate');
+            $table->string('homeAddress');
+            $table->string('clientType');
             $table->string('firstName');
-            $table->string('middleName');
+            $table->string('middleName')->nullable();
             $table->string('lastName');
             $table->string('gender');
-            $table->string('address');
+            $table->string('birthDate');
             $table->string('contact');
-            $table->string('clientType');
+            $table->string('divisionOfResidence');
+            $table->string('officeConcerned');
             $table->string('purposeId');
-            $table->string('officeConcernedId');
-            $table->string('timeIn');
-            $table->string('timeOut');
-            $table->string('logsNumber');
-            $table->string('virtualdNumber');
-            $table->string('series');
+            $table->string('virtualIdNumber');
+            $table->string('timeIn')->nullable();
+            $table->string('timeOut')->nullable();
+            $table->string('logsNumber')->nullable();
+            $table->string('series')->nullable();
             $table->timestamps();
         });
     }

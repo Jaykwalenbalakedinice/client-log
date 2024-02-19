@@ -9,18 +9,25 @@ class Client extends Model
 {
     use HasFactory;
 
+    protected $table = 'tbl_clientLogs';
+
     protected $fillable = [
-        'email',
-        'date',
-        'firstname',
-        'middlename',
-        'lastname',
-        'age',
-        'sex',
-        'homeaddress',
+        'emailAddress',
+        'homeAddress',
+        'clientType',
+        'firstName',
+        'middleName',
+        'lastName',
+        'gender',
+        'birthDate',
         'contact',
-        'purpose',
-        'officeconcerned',
-        'timein'
+        'divisionOfResidence',
+        'officeConcerned',
+        'purposeId',
+        'virtualIdNumber',
+        'timeIn',
+        'timeOut',
+        'logsNumber',
+        'series'
     ];
 }
