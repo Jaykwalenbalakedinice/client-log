@@ -143,7 +143,7 @@
 
     <div class="container">
         <div class="row">
-            <form method="POST" action="{{ route('client.store') }}"
+            <form method="POST" action="{{ route('client.reviewForm') }}"
                 class="card-body rounded-3 text-dark p-4 mt-3 mb-5 overflow-auto"
                 style="border-radius: 10px;
             overflow: hidden;
@@ -163,58 +163,46 @@
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="emailAddress"> <strong>Active Email Address</strong></label>
-                        <input type="email" id="emailAddress" class="form-control" name="emailAddress" value=""
-                            maxlength="254" placeholder="example@gmail.com" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)">
-                        @error('emailAddress')
-                            <div class="invalid-feedback2">{{ $message }}</div>
-                        @enderror
+                        <input type="email" id="emailAddress" class="form-control" name="emailAddress" maxlength="254"
+                            placeholder="example@gmail.com" onfocus="clearPlaceholder(this)"
+                            onblur="restorePlaceholder(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="homeAddress"><strong>Home Address</strong> </label>
-                        <input type="text" name="homeAddress" id="homeAddress" value="" maxlength="100"
-                            class="form-control" placeholder="Brgy. Sto Domingo Cainta Rizal"
-                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
-                        @error('homeAddress')
-                            <div class="invalid-feedback2">{{ $message }}</div>
-                        @enderror
+                        <input type="text" name="homeAddress" id="homeAddress" maxlength="100" class="form-control"
+                            placeholder="Brgy. Sto Domingo Cainta Rizal" onfocus="clearPlaceholder(this)"
+                            onblur="restorePlaceholder(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="clientType"> <strong>Client Type</strong> </label>
                         <select class="form-control" id="clientType" name="clientType">
-                            <option value="male">Citizen</option>
-                            <option value="female">Business</option>
-                            <option value="female">Government(Employee or another agency)</option>
+                            <option value="Citizen">Citizen</option>
+                            <option value="Business">Business</option>
+                            <option value="Government">Government(Employee or another agency)</option>
                         </select>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="firstName"><strong>First Names</strong> </label>
+                        <label class="label" for="firstName"><strong>First Name</strong> </label>
                         <input type="text" name="firstName" id="firstName" value="" maxlength="50"
                             class="form-control" placeholder="Juan" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)">
-                        @error('firstName')
-                            <div class="invalid-feedback2">{{ $message }}</div>
-                        @enderror
+                            onblur="restorePlaceholder(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="middleName"> <strong>Middle Names</strong> </label>
+                        <label class="label" for="middleName"> <strong>Middle Name</strong> </label>
                         <input type="text" name="middleName" id="middleName" value="" maxlength="50"
                             class="form-control" placeholder="Dela Cruz" onfocus="clearPlaceholder(this)"
                             onblur="restorePlaceholder(this)">
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
-                        <label class="label" for="lastName"> <strong>Last Names</strong> </label>
+                        <label class="label" for="lastName"> <strong>Last Name</strong> </label>
                         <input type="text" name="lastName" id="lastName" value="" maxlength="50"
                             class="form-control" placeholder="Santos" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)">
-                        @error('lastName')
-                            <div class="invalid-feedback2">{{ $message }}</div>
-                        @enderror
+                            onblur="restorePlaceholder(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
@@ -228,39 +216,31 @@
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="birthDate"> <strong>Birth Date</strong> </label>
                         <input type="date" name="birthDate" id="birthDate" value="" maxlength="50"
-                            class="form-control">
-                        @error('birthDate')
-                            <div class="invalid-feedback2">{{ $message }}</div>
-                        @enderror
+                            class="form-control" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="contact"> <strong>Mobile Number</strong> </label>
                         <input type="tel" id="contact" class="form-control" name="contact" value=""
                             pattern="[0]{1}[9]{1}[0-9]{9}" placeholder="Ex. 09638445701"
-                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
-                        @error('contact')
-                            <div class="invalid-feedback2">{{ $message }}</div>
-                        @enderror
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
-                        <label class="label" for="divisionOfResidence"> <strong>Division of Residence</strong>
+                        <label class="label" for="divisionOfResidence" style="font-size: 13px;"> <strong>Division of
+                                Residence</strong>
                         </label>
                         <input type="text" name="divisionOfResidence" id="divisionOfResidence" value=""
                             maxlength="50" class="form-control" placeholder="Division of Residence"
-                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
-                        @error('divisionOfResidence')
-                            <div class="invalid-feedback2">{{ $message }}</div>
-                        @enderror
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="officeConcerned"> <strong>Office Concerned</strong> </label>
                         <select class="form-control" id="officeConcerned" name="officeConcerned">
-                            <option value="male">ICT Unit</option>
-                            <option value="female">Multimedia</option>
-                            <option value="female">Legal Unit</option>
+                            <option value="ICT Unit">ICT Unit</option>
+                            <option value="Multimedia">Multimedia</option>
+                            <option value="Legal Unit">Legal Unit</option>
                         </select>
                     </div>
 
@@ -268,39 +248,37 @@
                         <label class="label" for="purposeId"> <strong>Purpose</strong> </label>
                         <input type="id" name="purposeId" id="purposeId" value="" maxlength="50"
                             class="form-control" placeholder="Purpose" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)">
-                        @error('purposeId')
-                            <div class="invalid-feedback2">{{ $message }}</div>
-                        @enderror
+                            onblur="restorePlaceholder(this)" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="virtualIdNumber"> <strong>Virtual ID Number</strong> </label>
                         <input type="id" name="virtualIdNumber" id="virtualIdNumber" value=""
                             maxlength="50" class="form-control" placeholder="ID Number"
-                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
-                        @error('virtualIdNumber')
-                            <div class="invalid-feedback2">{{ $message }}</div>
-                        @enderror
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
                     </div>
                     <div class="container-responsive">
                         <div class="row align-items-center">
+
                             <div class="col-8 mt-3 mt-sm-4">
                                 <button type="submit" class="btn btn-active bg-dark text-white"
                                     style="font-weight: bold;">Submit</button>
                             </div>
+
             </form>
+
             <div class="col-4 mt-3 mt-sm-4">
                 <button class="btn btn-primary"><a href="{{ route('client.clientLogs') }}"
                         style="text-decoration: none; color: white; font-weight: bold;">Go to Logs</a></button>
             </div>
         </div>
     </div>
-    </div>
+    </div> required
 
     </div>
     </div>
     <script>
+
         function clearPlaceholder(input) {
             input.setAttribute('data-original-placeholder', input.placeholder);
             input.placeholder = '';

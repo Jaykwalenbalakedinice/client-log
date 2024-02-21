@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Client Logs</title>
-
 </head>
 
 <body class="bg-custom" style="background-color: rgb(197, 197, 197)">
@@ -44,26 +43,17 @@
                                 <td>{{ $client->lastName }}</td>
                                 <td>
 
-                                    <div class="col-4">
-                                        <form method="POST"
-                                            action="{{ route('client.logout', ['client' => $client->id]) }}">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="submit" value="Log out" class="btn btn-success rounded-10"
-                                                autocomplete="off">
-                                        </form>
-                                    </div>
-                                    {{-- <div> Just used this for experimentation
-                                        <div class="col-4">
-                                            <form method="post"
-                                                action="{{ route('client.destroy', ['client' => $client]) }}">
+                                    <div class="row-1">
+                                        <div class="col col-1">
+                                            <form method="POST"
+                                                action="{{ route('client.logout', ['client' => $client->id]) }}">
                                                 @csrf
-                                                @method('delete')
-                                                <input type="submit" value="Delete" class="btn btn-danger rounded-10"
+                                                @method('PUT')
+                                                <input type="submit" value="Log out" class="btn btn-success rounded-10"
                                                     autocomplete="off">
                                             </form>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
