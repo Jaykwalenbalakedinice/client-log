@@ -15,36 +15,39 @@ class ClientController extends Controller
 
     public function clientLogs()
     {
+
         $clients = Client::all();
         return view('client.clientLogs', ['clients' => $clients]);
     }
 
     public function store(Request $request)
     {
-        // $data = $request->validate([
-        //     'emailAddress' => 'required',
-        //     'homeAddress' => 'required',
-        //     'clientType' => 'required',
-        //     'firstName' => 'required',
-        //     'middleName' => 'nullable',
-        //     'lastName' => 'required',
-        //     'gender' => 'required',
-        //     'birthDate' => 'required',
-        //     'contact' => 'required',
-        //     'divisionOfResidence' => 'required',
-        //     'officeConcerned' => 'required',
-        //     'purposeId' => 'required',
-        //     'virtualIdNumber' => 'required',
-        //     'timeOut' => 'nullable',
-        //     'logsNumber' => 'nullable',
-        // ]);
+        $data = $request->validate([
+            'emailAddress' => 'required',
+            'homeAddress' => 'required',
+            'clientType' => 'required',
+            'firstName' => 'required',
+            'middleName' => 'nullable',
+            'lastName' => 'required',
+            'gender' => 'required',
+            'birthDate' => 'required',
+            'contact' => 'required',
+            'divisionOfResidence' => 'required',
+            'officeConcerned' => 'required',
+            'purposeId' => 'required',
+            'virtualIdNumber' => 'required',
+            'timeOut' => 'nullable',
+            'logsNumber' => 'nullable',
+        ]);
 
-        // $logsNumber = Client::count() + 1;
-        // $data['logsNumber'] = $logsNumber;
-        // $data['timeIn'] = Carbon::now();
-        // $data['series'] = Carbon::now()->year;
+        $logsNumber = Client::count() + 1;
+        $data['logsNumber'] = $logsNumber;
+        $data['timeIn'] = Carbon::now();
+        $data['series'] = Carbon::now()->year;
 
-        return redirect(route('client.store'));
+        $newClient = Client::create($data);
+        // return redirect(route('client.store'));
+        return redirect()->route('client.store')->with('success', 'Client created successfully.');
     }
 
     //I just used this for experimentation.
@@ -60,34 +63,5 @@ class ClientController extends Controller
         $client->update(['timeOut' => Carbon::now()]);
 
         return redirect()->route('client.clientLogs')->with('success', 'Logged out successfully.');
-    }
-
-    public function reviewForm(Request $request){
-        $data = $request->validate([
-
-                'emailAddress' => 'required',
-                'homeAddress' => 'required',
-                'clientType' => 'required',
-                'firstName' => 'required',
-                'middleName' => 'nullable',
-                'lastName' => 'required',
-                'gender' => 'required',
-                'birthDate' => 'required',
-                'contact' => 'required',
-                'divisionOfResidence' => 'required',
-                'officeConcerned' => 'required',
-                'purposeId' => 'required',
-                'virtualIdNumber' => 'required',
-                'timeOut' => 'nullable',
-                'logsNumber' => 'nullable',
-            ]);
-    
-            $logsNumber = Client::count() + 1;
-            $data['logsNumber'] = $logsNumber;
-            $data['timeIn'] = Carbon::now();
-            $data['series'] = Carbon::now()->year;
-
-            $newClient = Client::create($data);
-            return view('client.reviewForm')->with('data', $data);
     }
 }

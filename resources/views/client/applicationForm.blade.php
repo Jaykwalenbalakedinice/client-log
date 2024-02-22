@@ -143,7 +143,7 @@
 
     <div class="container">
         <div class="row">
-            <form method="POST" action="{{ route('client.reviewForm') }}"
+            <form method="POST" action="{{ route('client.store') }}"
                 class="card-body rounded-3 text-dark p-4 mt-3 mb-5 overflow-auto"
                 style="border-radius: 10px;
             overflow: hidden;
@@ -165,14 +165,14 @@
                         <label class="label" for="emailAddress"> <strong>Active Email Address</strong></label>
                         <input type="email" id="emailAddress" class="form-control" name="emailAddress" maxlength="254"
                             placeholder="example@gmail.com" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required>
+                            onblur="restorePlaceholder(this)" required autocomplete="off">
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="homeAddress"><strong>Home Address</strong> </label>
                         <input type="text" name="homeAddress" id="homeAddress" maxlength="100" class="form-control"
                             placeholder="Brgy. Sto Domingo Cainta Rizal" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required>
+                            onblur="restorePlaceholder(this)" autocomplete="off" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
@@ -188,21 +188,21 @@
                         <label class="label" for="firstName"><strong>First Name</strong> </label>
                         <input type="text" name="firstName" id="firstName" value="" maxlength="50"
                             class="form-control" placeholder="Juan" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required>
+                            onblur="restorePlaceholder(this)" autocomplete="off" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="middleName"> <strong>Middle Name</strong> </label>
                         <input type="text" name="middleName" id="middleName" value="" maxlength="50"
                             class="form-control" placeholder="Dela Cruz" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)">
+                            onblur="restorePlaceholder(this)" autocomplete="off">
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="lastName"> <strong>Last Name</strong> </label>
                         <input type="text" name="lastName" id="lastName" value="" maxlength="50"
                             class="form-control" placeholder="Santos" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required>
+                            onblur="restorePlaceholder(this)" autocomplete="off" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
@@ -216,14 +216,14 @@
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="birthDate"> <strong>Birth Date</strong> </label>
                         <input type="date" name="birthDate" id="birthDate" value="" maxlength="50"
-                            class="form-control" required>
+                            class="form-control" autocomplete="off" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="contact"> <strong>Mobile Number</strong> </label>
                         <input type="tel" id="contact" class="form-control" name="contact" value=""
                             pattern="[0]{1}[9]{1}[0-9]{9}" placeholder="Ex. 09638445701"
-                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" autocomplete="off" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
@@ -232,7 +232,7 @@
                         </label>
                         <input type="text" name="divisionOfResidence" id="divisionOfResidence" value=""
                             maxlength="50" class="form-control" placeholder="Division of Residence"
-                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" autocomplete="off" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
@@ -248,37 +248,76 @@
                         <label class="label" for="purposeId"> <strong>Purpose</strong> </label>
                         <input type="id" name="purposeId" id="purposeId" value="" maxlength="50"
                             class="form-control" placeholder="Purpose" onfocus="clearPlaceholder(this)"
-                            onblur="restorePlaceholder(this)" required>
+                            onblur="restorePlaceholder(this)" autocomplete="off" required>
                     </div>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
                         <label class="label" for="virtualIdNumber"> <strong>Virtual ID Number</strong> </label>
                         <input type="id" name="virtualIdNumber" id="virtualIdNumber" value=""
                             maxlength="50" class="form-control" placeholder="ID Number"
-                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
+                            onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" autocomplete="off" required>
                     </div>
-                    <div class="container-responsive">
-                        <div class="row align-items-center">
-
-                            <div class="col-8 mt-3 mt-sm-4">
-                                <button type="submit" class="btn btn-active bg-dark text-white"
-                                    style="font-weight: bold;">Submit</button>
-                            </div>
-
             </form>
 
-            <div class="col-4 mt-3 mt-sm-4">
-                <button class="btn btn-primary"><a href="{{ route('client.clientLogs') }}"
-                        style="text-decoration: none; color: white; font-weight: bold;">Go to Logs</a></button>
+            <div class="container-responsive">
+                <div class="row align-items-center">
+
+                    <div class="col-8 mt-3 mt-sm-4">
+                        <button type="button" class="btn btn-active bg-dark text-white" style="font-weight: bold;"
+                            data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="submitNga">Submit</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel" style="padding-left: 115px;">Information Confirmation
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Email Address:</strong> <span id="previewEmailAddress"></span></p>
+                                        <p><strong>Home Address:</strong> <span id="previewHomeAddress"></span></p>
+                                        <p><strong>Client Type:</strong> <span id="previewClientType"></span></p>
+                                        <p><strong>First Name:</strong> <span id="previewFirstName"></span></p>
+                                        <p><strong>Middle Name:</strong> <span id="previewMiddleName"></span></p>
+                                        <p><strong>Last Name:</strong> <span id="previewLastName"></span></p>
+                                        <p><strong>Gender:</strong> <span id="previewGender"></span></p>
+                                        <p><strong>Birth Date:</strong> <span id="previewBirthDate"></span></p>
+                                        <p><strong>Mobile Number:</strong> <span id="previewContact"></span></p>
+                                        <p><strong>Division of Residence:</strong> <span id="previewDivisionOfResidence"></span></p>
+                                        <p><strong>Office Concerned:</strong> <span id="previewOfficeConcerned"></span></p>
+                                        <p><strong>Purpose:</strong> <span id="previewPurposeId"></span></p>
+                                        <p><strong>Virtual Id Number:</strong> <span id="previewVirtualIdNumber"></span></p>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Edit</button>
+                                        <button type="submit" class="btn btn-primary"
+                                            id="confirmSubmit">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-4 mt-3 mt-sm-4">
+                        <button type="button" class="btn btn-primary"><a href="{{ route('client.clientLogs') }}"
+                                style="text-decoration: none; color: white; font-weight: bold;">Go to Logs</a></button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    </div> required
 
     </div>
     </div>
     <script>
-
         function clearPlaceholder(input) {
             input.setAttribute('data-original-placeholder', input.placeholder);
             input.placeholder = '';
@@ -302,6 +341,38 @@
                 // For example, you might close the modal or redirect to another page
                 myModal.hide();
             });
+        });
+
+        document.getElementById('submitNga').addEventListener('click', function() {
+            // Get form inputs
+            var emailAddress = document.getElementById('emailAddress').value;
+            var homeAddress = document.getElementById('homeAddress').value;
+            var clientType = document.getElementById('clientType').value;
+            var firstName = document.getElementById('firstName').value;
+            var middleName = document.getElementById('middleName').value;
+            var lastName = document.getElementById('lastName').value;
+            var gender = document.getElementById('gender').value;
+            var birthDate = document.getElementById('birthDate').value;
+            var contact = document.getElementById('contact').value;
+            var divisionOfResidence = document.getElementById('divisionOfResidence').value;
+            var officeConcerned = document.getElementById('officeConcerned').value;
+            var purposeId = document.getElementById('purposeId').value;
+            var virtualIdNumber = document.getElementById('virtualIdNumber').value;
+
+            // Populate preview data
+            document.getElementById('previewEmailAddress').innerText = emailAddress;
+            document.getElementById('previewHomeAddress').innerText = homeAddress;
+            document.getElementById('previewClientType').innerText = clientType;
+            document.getElementById('previewFirstName').innerText = firstName;
+            document.getElementById('previewMiddleName').innerText = middleName;
+            document.getElementById('previewLastName').innerText = lastName;
+            document.getElementById('previewGender').innerText = gender;
+            document.getElementById('previewBirthDate').innerText = birthDate;
+            document.getElementById('previewContact').innerText = contact;
+            document.getElementById('previewDivisionOfResidence').innerText = divisionOfResidence;
+            document.getElementById('previewOfficeConcerned').innerText = officeConcerned;
+            document.getElementById('previewPurposeId').innerText = purposeId;
+            document.getElementById('previewVirtualIdNumber').innerText = virtualIdNumber;
         });
     </script>
 </body>
