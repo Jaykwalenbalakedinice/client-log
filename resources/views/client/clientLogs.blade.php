@@ -38,7 +38,7 @@
     </style>
 </head>
 
-<body class="bg-custom" style="background-color: rgb(197, 197, 197)">
+<body class="bg-custom" style="background-color: #BB8E89">
     <div id=successMessage class="overlay">
         @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
@@ -54,19 +54,19 @@
         <div class="row">
 
             <div class="row mb-3">
-                <div class="col-2">
-                    <button class="btn btn-dark" autocomplete="off"><a href="{{ route('client.applicationForm') }}"
+                <div class="col-6 col-md-3 col-lg-2">
+                    <button class="btn btn-dark" style="padding-left: 6px; padding-right: 6px;"><a href="{{ route('client.applicationForm') }}"
                             style="text-decoration: none; color: white; font-size: 13px;">Create New
                             Application</a></button>
                 </div>
 
-                <div class="col-3">
+                <div class="col-6 col-md-4 col-lg-4">
                     <input type="text" id="searchInput" class="form-control border-dark" style="border-radius: 0;   "
                         placeholder="Enter Virtual ID">
                 </div>
             </div>
 
-            <div class="table-responsive" style="height: 400px; overflow-y: auto;">
+            <div class="table-responsive col-12" style="height: 400px; overflow-y: auto;">
                 <table class="table table-striped table-hover table-sm table-bordered border-dark text-center">
                     <thead>
                         <tr class="table-dark table-active text-uppercase text-white">
