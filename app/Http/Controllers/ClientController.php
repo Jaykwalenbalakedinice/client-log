@@ -24,7 +24,9 @@ class ClientController extends Controller
     {
         $data = $request->validate([
             'emailAddress' => 'required',
-            'homeAddress' => 'required',
+            'region' => 'required',
+            'municipalitiy' => 'required',
+            'Barangay' => 'required',
             'clientType' => 'required',
             'firstName' => 'required',
             'middleName' => 'nullable',
@@ -49,12 +51,6 @@ class ClientController extends Controller
         // return redirect(route('client.store'));
         return redirect()->route('client.store')->with('success', 'Client created successfully.');
     }
-
-    //I just used this for experimentation.
-    // public function destroy(Client $client){
-    //     $client->delete();
-    //     return redirect(route('client.clientLogs'));
-    // }
 
     // Controller method for logging out client
     public function logout(Client $client)

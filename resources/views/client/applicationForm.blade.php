@@ -168,12 +168,52 @@
                             onblur="restorePlaceholder(this)" required autocomplete="on">
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                    {{-- <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="homeAddress"><strong>Home Address</strong> </label>
                         <input type="text" name="homeAddress" id="homeAddress" maxlength="100" class="form-control"
                             placeholder="Brgy. Sto Domingo Cainta Rizal" onfocus="clearPlaceholder(this)"
                             onblur="restorePlaceholder(this)" autocomplete="on" required>
-                    </div>
+                    </div> --}}
+
+                    <form id="addressForm">
+                        <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                            <label class="label" for="region"><strong>Region</strong></label>
+                            <select id="region" class="form-control" onchange="loadMunicipalities()">
+                                <option value="Ilocos Region">Region I - Ilocos Region</option>
+                                <option value="Cagayan Valley">Region II - Cagayan Valley</option>
+                                <option value="Central Luzon">Region III - Central Luzon</option>
+                                <option value="CALABARZON">Region IV-A - CALABARZON</option>
+                                <option value="MIMAROPA">Region IV-B - MIMAROPA</option>
+                                <option value="Bicol Region">Region V - Bicol Region</option>
+                                <option value="Western Visayas">Region VI - Western Visayas</option>
+                                <option value="Central Visayas">Region VII - Central Visayas</option>
+                                <option value="Eastern Visayas">Region VIII - Eastern Visayas</option>
+                                <option value="Zamboanga Peninsula">Region XI - Zamboanga Peninsula</option>
+                                <option value="Northern Mindanao">Region X - Northern Mindanao</option>
+                                <option value="Davao Region">Region XI - Davao Region</option>
+                                <option value="SOCCSKSARGEN">Region XII - SOCCSKSARGEN</option>
+                                <option value="Caraga">Region XIII - Caraga</option>
+                                <option value="National Capital Region">NCR - National Capital Region</option>
+                                <option value="Cordillera Administrative Region">CAR - Cordillera Administrative Region</option>
+                                <option value="Bangsamoro Autonomous Region in Muslim Mindanao">BARMM - Bangsamoro Autonomous Region in Muslim Mindanao</option>
+                                <!-- Populate regions here -->
+                            </select>
+                        </div>
+                        <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                            <label class="label" for="municipality"><strong>Municipality</strong></label>
+                            <select id="municipality" class="form-control" onchange="loadBarangays()">
+                                <option value="">Select Municipality</option>
+                                <!-- Municipality options will be populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
+                            <label class="label" for="barangay"><strong>Barangay</strong></label>
+                            <select id="barangay" class="form-control">
+                                <option value="">Select Barangay</option>
+                                <!-- Barangay options will be populated dynamically -->
+                            </select>
+                        </div>
+                    </form>
 
                     <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="clientType"> <strong>Client Type</strong> </label>
@@ -227,7 +267,7 @@
                             required>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
+                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="divisionOfResidence" style="font-size: 13px;"> <strong>Division of
                                 Residence</strong>
                         </label>
@@ -237,7 +277,7 @@
                             required>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
+                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="officeConcerned"> <strong>Office Concerned</strong> </label>
                         <select class="form-control" id="officeConcerned" name="officeConcerned">
                             <option value="ICT Unit">ICT Unit</option>
@@ -246,14 +286,14 @@
                         </select>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
+                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="purposeId"> <strong>Purpose</strong> </label>
                         <input type="id" name="purposeId" id="purposeId" value="" maxlength="50"
                             class="form-control" placeholder="Purpose" onfocus="clearPlaceholder(this)"
                             onblur="restorePlaceholder(this)" autocomplete="on" required>
                     </div>
 
-                    <div class="form-group mt-3 col-sm-12 col-lg-3 col-md-3">
+                    <div class="form-group mt-3 col-sm-12 col-lg-4 col-md-4">
                         <label class="label" for="virtualIdNumber"> <strong>Virtual ID Number</strong> </label>
                         <input type="id" name="virtualIdNumber" id="virtualIdNumber" value=""
                             maxlength="50" class="form-control" placeholder="ID Number"
@@ -398,6 +438,18 @@
                 staticBackdrop.show();
             }
         });
+
+        function loadMunicipalities() {
+            var region = document.getElementById('region').value;
+            // Make an AJAX request to fetch municipalities based on the selected region
+            // Populate the #municipality dropdown with the fetched data
+        }
+
+        function loadBarangays() {
+            var municipality = document.getElementById('municipality').value;
+            // Make an AJAX request to fetch barangays based on the selected municipality
+            // Populate the #barangay dropdown with the fetched data
+        }
     </script>
 </body>
 

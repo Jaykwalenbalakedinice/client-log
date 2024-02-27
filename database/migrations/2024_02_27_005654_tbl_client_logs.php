@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('tbl_clientLogs', function (Blueprint $table) {
             $table->id();
             $table->string('emailAddress');
-            $table->string('homeAddress');
+            $table->string('Region');
+            $table->string('Municipality');
+            $table->string('Barangay');
             $table->string('clientType');
             $table->string('firstName');
             $table->string('middleName')->nullable();

@@ -3,10 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/clientLogs', [ClientController::class, 'clientLogs'])->name('client.clientLogs');
 Route::get('/clientLogs/applicationForm', [ClientController::class, 'applicationForm'])->name('client.applicationForm');
 Route::post('/clientLogs', [ClientController::class, 'store'])->name('client.store');

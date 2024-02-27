@@ -13,7 +13,9 @@ class Client extends Model
 
     protected $fillable = [
         'emailAddress',
-        'homeAddress',
+        'region',
+        'municipality',
+        'barangay',
         'clientType',
         'firstName',
         'middleName',
